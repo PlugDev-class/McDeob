@@ -62,15 +62,10 @@ public class McDeob {
             System.exit(1);
         }
 
-        boolean decompile = false;
-        if (options.has("decompile")) {
-            decompile = true;
-        }
-
-        boolean finalDecompile = decompile;
+        boolean decompile = options.has("decompile");
 
         Thread processorThread = new Thread(() -> {
-            Processor processor = new Processor(version, finalDecompile, null);
+            Processor processor = new Processor(version, decompile, null);
             processor.init();
         }, "Processor");
         processorThread.start();
